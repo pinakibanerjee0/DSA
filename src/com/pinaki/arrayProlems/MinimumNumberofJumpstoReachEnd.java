@@ -58,6 +58,14 @@ public class MinimumNumberofJumpstoReachEnd {
 			return -1;
 
 		// initialization
+		/*
+		 * This code uses a greedy approach to determine the minimum number of jumps. It
+		 * maintains three variables:
+		 *  maxReach : represents the maximum index that can be reached, 
+		 *  steps : represents the number of steps remaining in the current jump and 
+		 *  jumps : represents the number of jumps taken so far.
+		 * 
+		 */
 		int maxReach = arr[0];
 		int step = arr[0];
 		int jump = 1;

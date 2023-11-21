@@ -1,5 +1,7 @@
 package com.pinaki.arrayProlems;
 
+import java.util.Arrays;
+
 /*
 Type I: At most one transaction is allowed
 
@@ -52,11 +54,64 @@ public class BestTimetoBuyAndSellStock {
 		int prices[] = { 7, 1, 5, 6, 4 };
 		int n = prices.length;
 		int max_profit = maxProfit(prices, n);
+		int max_profit_with_infinite_transaction = maxProfit(prices);
 		System.out.println(max_profit);
+		System.out.println(max_profit_with_infinite_transaction);
+
+	}
+
+	/*
+	 * Time Complexity: O(N). Where N is the size of prices array. Auxiliary Space:
+	 * O(1). We do not use any extra space.
+	 */
+
+	/*
+	 * Type II: Infinite transactions are allowed
+	 * 
+	 * Examples:
+	 * 
+	 * Input: prices[] = {7, 1, 5, 3, 6, 4} Output: 7 Explanation: Purchase on 2nd
+	 * day. Price = 1. Sell on 3rd day. Price = 5. Therefore, profit = 5 – 1 = 4.
+	 * Purchase on 4th day. Price = 3. Sell on 5th day. Price = 6. Therefore, profit
+	 * = 4 + (6 – 3) = 7.
+	 * 
+	 * Input: prices = {1, 2, 3, 4, 5} Output: 4 Explanation: Purchase on 1st day.
+	 * Price = 1. Sell on 5th day. Price = 5. Therefore, profit = 5 – 1 = 4.
+	 * 
+	 * Approach: The idea is to maintain a boolean value that denotes if there is
+	 * any current purchase ongoing or not. If yes, then at the current state, the
+	 * stock can be sold to maximize profit or move to the next price without
+	 * selling the stock. Otherwise, if no transaction is happening, the current
+	 * stock can be bought or move to the next price without buying.
+	 */
+
+	// Function to find maximum profit possible
+	// by buying and selling at most one stack
+	static int maxProfit(int[] prices) {
+		int n = prices.length;
+		int[][] dp = new int[n][2];
+		for (int[] row : dp)
+			Arrays.fill(row, -1);
+		return findMaximumProfitWithInfiniteTransaction(0, 1, prices, dp);
+	}
+
+	static int findMaximumProfitWithInfiniteTransaction(int i, int k, int[] prices, int[][] dp) {
+
+		if (i == prices.length)
+			return 0;
+		if (dp[i][k] != -1)
+			return dp[i][k];
+		int profit = 0;
+		if (k == 1) {
+			int buy = -prices[i] + findMaximumProfitWithInfiniteTransaction(i + 1, 0, prices, dp);
+			int notBuy = findMaximumProfitWithInfiniteTransaction(i + 1, 1, prices, dp);
+			profit = Math.max(buy, notBuy);
+		} else {
+			int sell = prices[i] + findMaximumProfitWithInfiniteTransaction(i + 1, 1, prices, dp);
+			int notSell = findMaximumProfitWithInfiniteTransaction(i + 1, 0, prices, dp);
+			profit = Math.max(sell, notSell);
+		}
+
+		return dp[i][k] = profit;
 	}
 }
-
-/*
- * Time Complexity: O(N). Where N is the size of prices array. Auxiliary Space:
- * O(1). We do not use any extra space.
- */

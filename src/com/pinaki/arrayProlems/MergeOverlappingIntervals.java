@@ -123,8 +123,7 @@ public class MergeOverlappingIntervals {
 			}
 		});
 
-		int index = 0; // Stores index of last element
-		// in output array (modified arr[])
+		int index = 0; // Stores index of last element in output array (modified arr[])
 
 		// Traverse all input Intervals
 		for (int i = 1; i < arr.length; i++) {

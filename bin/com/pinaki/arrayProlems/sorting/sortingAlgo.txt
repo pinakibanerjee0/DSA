@@ -1,0 +1,17 @@
+1. Bubble Sort - Simple, but inefficient sorting algorithm 
+that works by repeatedly swapping adjacent elements if they are in the wrong order.
+
+2. Selection Sort - Simple sorting algorithm 
+that works by repeatedly selecting the smallest element from the unsorted part of the array and putting it at the beginning.
+
+3. Insertion Sort - Simple sorting algorithm 
+that works by repeatedly inserting an element from the unsorted part of the array into the correct position in the sorted part.
+
+4. Merge Sort - Divide-and-conquer algorithm 
+that works by dividing the array into two halves, sorting each half recursively, and then merging the sorted halves.
+
+5. Quicksort - Divide-and-conquer algorithm 
+that works by selecting a "pivot" element from the array and partitioning the other elements into those less than and those greater than the pivot. It then recursively sorts the subarrays on either side of the pivot.
+
+6. Heapsort - In-place sorting algorithm 
+that works by building a heap data structure from the array and repeatedly extracting the maximum element from the heap and putting it at the end of the array.
